@@ -64,41 +64,6 @@ void loop() {
 }
 
 /* Additional functions */
-void publishIntNumber() {
-  static int counter = 0;
-  static const String topicStr = createTopic("int_number");
-  static const char *topic = topicStr.c_str();
-
-  counter++;
-
-  mqttClient.publish(topic, String(counter).c_str(), RETAINED);
-  Serial.println(" <= " + String(topic) + ": " + String(counter));
-}
-
-void publishFloatNumber() {
-  static float counter = 0;
-  static const String topicStr = createTopic("float_number");
-  static const char *topic = topicStr.c_str();
-
-  counter = counter + 0.1;
-
-  mqttClient.publish(topic, String(counter).c_str(), RETAINED);
-  Serial.println(" <= " + String(topic) + ": " + String(counter));
-}
-
-void publishString() {
-  static int counter = 0;
-  static const String topicStr = createTopic("string");
-  static const char *topic = topicStr.c_str();
-
-  counter++;
-  String text = "this is a text with dynamic numbers " + String(counter);
-
-  mqttClient.publish(topic, text.c_str(), RETAINED);
-  Serial.println(" <= " + String(topic) + ": " + text);
-}
-
-
 
 void publishBigJson() {
   static float temperature;
