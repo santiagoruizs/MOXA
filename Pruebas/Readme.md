@@ -5,7 +5,7 @@ En esta carpeta se añaden los siguientes archivos de prueba:
 1. TTN_ESP32_ABP.ino: conexión LoRa vía ABP (se descarta este código a favor de ESP32_MQTT_PruebasEntregaFinal_1.ino)
 1. GPS_bueno: pruebas de sleep + recuperar conexión con GPS. Se comprueba que habiendo encontrado señal de GPS, la lectura después de la reconexión toma unos pocos segundos
 1. LoraWanABP.ino: prueba funcional de envío de mensaje HelloWorld a TTN 
-1. ESP32_MQTT_PruebasEntregaFinal_1.ino: archivo de prueba para las granjas. Se recogen datos de GPS y de temperatura/humedad. Se trabaja con distintas comprobaciones para evitar enviar datos errónoes, además se separa la lectura del GPS en un loop distinto
+1. ESP32_MQTT_PruebasEntregaFinal_1.ino: archivo de prueba para las granjas. Se recogen datos de GPS y de temperatura/humedad. Se trabaja con distintas comprobaciones para evitar enviar datos errónoes, además se separa la lectura del GPS en un loop distinto. (A tener en cuenta que es necesaria una modificación de la librería lmic para que funcione correctamente)
 
 [[Go back]](/README.md)
 
@@ -202,6 +202,7 @@ void checkConnections() {
 [[Go to top]](#Pruebas)
 
 ### [Code](LoraWanABP.ino)
+Para el uso de este código se deja como referencia el tutorial http://akirasan.net/nodo-lorawan-con-esp32/
 ```cpp
 #include <lmic.h>
 #include <hal/hal.h>
