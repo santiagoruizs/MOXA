@@ -42,13 +42,15 @@ Se ha estructurado el repositorio por carpetas diferenciadas por conceptos:
 
 [[Go to top]](#MOXA)
 
+
 ## Software
 - Arduino IDE 1.8.12 - [Download](https://www.arduino.cc/en/main/software)
 - Node-RED 1.0.6 - [Getting started](https://nodered.org/docs/getting-started/)
 
-## Contributors
+## Colaboradores
 - [@CristianDIES](https://github.com/CristianDIES)
 - [@santiagoruizs](https://github.com/santiagoruizs)
 - [@JEISONJURADO](https://github.com/JEISONJURADO)
 
+## Enlace
 https://github.com/santiagoruizs/MOXA
