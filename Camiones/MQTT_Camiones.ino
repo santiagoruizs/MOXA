@@ -8,23 +8,34 @@
 
 #define RX_PIN 16 // Pinout RX of ESP32
 #define TX_PIN 17 // Pinout TX of ESP32
+#define REFRESH_RATE 1000 // Defined in miliseconds
+#define SLEEP_TIME 10 //Defined in seconds
 
-#define DHT_PIN 2     // Defines pin number to which the sensor is connected
+#define DHT_PIN 14     // Defines pin number to which the sensor is connected
 #define DHT_TYPE DHT11 // Defines the sensor type. It can be DHT11 or DHT22
-
-#define ECHO_PIN 12 // Analog input that receives the echo signal
-#define TRIG_PIN 13 // Digital output that sends the trigger signal
 
 DHT dhtSensor(DHT_PIN, DHT_TYPE); // Defines the sensor dht
 HardwareSerial SerialGPS(1);
 TinyGPSPlus gps;
 
+//Global variables
+static bool GPSread; //Controls the GPS data has been obtained
+static bool DHTread; //Controls the DHT data has been obtained
+static bool GPSready;
+static float temperature;
+static float humidity;
+static float latGPS;
+static float longGPS;
+
 // Replace the next variables with your Wi-Fi SSID/Password
-const char *WIFI_SSID = "MIWIFI_2G_Hekd";
-const char *WIFI_PASSWORD = "CEtTpYNd";
+//const char *WIFI_SSID = "AulaAutomatica";
+//const char *WIFI_PASSWORD = "ticsFcim";
+const char *WIFI_SSID = "MiFibra-1843";
+const char *WIFI_PASSWORD = "jSi9ewER";
 char macAddress[18];
 
-const char *MQTT_BROKER_IP = "192.168.1.252";
+//const char *MQTT_BROKER_IP = "10.20.60.5";
+const char *MQTT_BROKER_IP = "20.50.173.151"; //Running a Mosquitto broker using Azure
 const int MQTT_PORT = 1883;
 const bool RETAINED = true;
 
@@ -33,67 +44,92 @@ PubSubClient mqttClient(wifiClient);
 
 void setup() {
   Serial.begin(9600); // Starts the serial communication
+  delay(1000);
   Serial.println("\nBooting device...");
-  pinMode(ECHO_PIN, INPUT);  // Sets the ECHO_PIN as an Input
-  pinMode(TRIG_PIN, OUTPUT); // Sets the TRIG_PIN as an Output
 
   mqttClient.setServer(MQTT_BROKER_IP,
                        MQTT_PORT); // Connect the configured mqtt broker
 
+  //Enable comms
   connectToWiFiNetwork(); // Connects to the configured network
   connectToMqttBroker();  // Connects to the configured mqtt broker
+
+  //Starting devices comms
   dhtSensor.begin();
-
   SerialGPS.begin(9600, SERIAL_8N1, RX_PIN, TX_PIN); // Starts gps communication with UART
-
-
+  
+  TimerHandle_t xTimer = xTimerCreate("readGPSData", REFRESH_RATE, pdTRUE, (void *) 0, readGPSData);
+  xTimerStart(xTimer, 0);
 }
 
 void loop() {
+  //delay(1500);
   checkConnections(); // We check the connection every time
-  
-  // Publish every 2 seconds
-  static int nowTime = millis();
-  static int startTime = 0;
-  static int elapsedTime = 0;
-  nowTime = millis();
-  elapsedTime = nowTime - startTime;
-  if (elapsedTime >= 2000) {
-    publishCamion("camion1");
-    publishCamion("camion2");
-    publishCamion("camion3");
-    publishCamion("camion4");
-    publishCamion("camion5");    
-    startTime = nowTime;
+
+  //Methods to get data from devices
+  GPSready = false;
+  if (SerialGPS.available()) {
+    gps.encode(SerialGPS.read()); // Encodes all messages from GPS
+    GPSready = true;
+  }
+  //readGPSData();
+  readDHTData();
+
+  if(GPSread and DHTread){
+    Serial.println("Data is available to be sent");
+    publishTruck();
+  }
+  else if(GPSread){
+    Serial.println("Data from DHT not available");
+  }
+  else{
+    Serial.println("Data from GPS not available");
   }
 }
 
-
-void publishCamion(char *tpc) {
- 
-  const String topicStr = createTopic(tpc);
-  const char *topic = topicStr.c_str();
+/* Additional functions */
+void readGPSData(TimerHandle_t xTimer){
+  if(GPSready){
+    GPSread = false;
+    latGPS = gps.location.lat();
+    longGPS = gps.location.lng();
   
-  DynamicJsonDocument doc(2048); // Create JSON document
-  char buffer[2048]; // Create the buffer where we will print the JSON document
-                     // to publish through MQTT
+    if(latGPS and longGPS){
+      GPSread = true; 
+    }   
+  }
+}
 
-
-  static float temperature;
+void readDHTData(){
+  DHTread = false;
   temperature = dhtSensor.readTemperature();
+  humidity = dhtSensor.readHumidity();
+  if(temperature and humidity){
+    DHTread = true;
+  }
+}
 
-  doc["device"] = "ESP32"; // Add names and values to the JSON document
-  doc["leche"] = random(1000);
-  doc["temp"]= temperature;
+void publishTruck(){
+  static const String topicStr = createTopic("truck");
+  static const char *topic = topicStr.c_str();
+  
+  StaticJsonDocument<128> data2send; // Create JSON
+  char buffer[128]; // Create the buffer where we will print the JSON document
+                    // to publish through MQTT
+
+  data2send["leche"] = random(1000);
+  data2send["temp"]= temperature;
+  data2send["latGPS"]= latGPS;
+  data2send["longGPS"]= longGPS;
 
   // Serialize the JSON document to a buffer in order to publish it
-  size_t n = serializeJson(doc, buffer);
-  mqttClient.publish_P(topic, buffer, n); // No RETAINED option
+  serializeJson(data2send, buffer);
+  mqttClient.publish(topic, buffer, RETAINED);
   Serial.println(" <= " + String(topic) + ": " + String(buffer));
 }
 
 String createTopic(char *topic) {
-  String topicStr = topic;
+  String topicStr = String(macAddress) + "/" + topic;
   return topicStr;
 }
 
@@ -129,6 +165,7 @@ void connectToMqttBroker() {
 
 void checkConnections() {
   if (mqttClient.connected()) {
+    //Serial.println("Connected MQTT Broker!");
     mqttClient.loop();
   } else { // Try to reconnect
     Serial.println("Connection has been lost with MQTT Broker");
