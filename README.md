@@ -7,28 +7,48 @@ Se ha estructurado el repositorio por carpetas diferenciadas por conceptos:
 
 | | | | | |
 |-|-|-|-|-|
-|[**Camiones**](#camiones) |[**Fabrica**](#fabrica) |[**Granjas**](#granjas) |[**Nodered**](#nodered) |[**Pruebas**](#pruebas)|
+|[**Camiones**](#camiones) |[**Fábrica**](#fabrica) |[**Granjas**](#granjas) |[**Nodered**](#nodered) |[**Pruebas**](#pruebas)|
 | | | | | |
 
 ## [Camiones](/camiones)
-| | Description | Code | Docs |
+| | Descripción | Código | Docs |
 |-|:------------|:----:|:----:|
 |MQTT_Camiones.ino | Código en formato Arduino IDE |[:white_check_mark:](/Camiones/MQTT_Camiones.ino)|[:white_check_mark:](/Camiones/README.md)|
 |camiones.json| Dashboard Node-Red en formato json |[:white_check_mark:](/Camiones/camiones.json)|[:white_check_mark:](/Camiones/README.md)|
 
-## [Fabrica](/fabrica)
+## [Fábrica](/fabrica)
+| | Descripción | Código | Docs |
+|-|:------------|:----:|:----:|
+|ESP32_Fabrica_MQTT.ino | Código en formato Arduino IDE |[:white_check_mark:](/Fabrica/ESP32_Fabrica_MQTT.ino)|[:white_check_mark:](/Fabrica/readme.txt)|
+|planta.json| Dashboard Node-Red en formato json |[:white_check_mark:](/Fabrica/planta.json)|[:white_check_mark:](/Fabrica/readme.txt)|
 
 ## [Granjas](/granjas)
+| | Descripción | Código | Docs |
+|-|:------------|:----:|:----:|
+|ESP32_Granjas_Vacas_MQTT.ino | Código en formato Arduino IDE |[:white_check_mark:](/Granjas/ESP32_Granjas_Vacas_MQTT/ESP32_Granjas_Vacas_MQTT.ino)|:negative_squared_cross_mark:|
+|Granjas.json| Dashboard Node-Red en formato json |[:white_check_mark:](/Granjas/Granjas.json)|:negative_squared_cross_mark:|
 
 ## [Nodered](/nodered)
+| | Descripción | Código | Docs |
+|-|:------------|:----:|:----:|
+|Granjas_Fabrica.json| Dashboard Node-Red en formato json |[:white_check_mark:](/Node-red/Granjas_Fabrica.json)|:negative_squared_cross_mark:|
 
 ## [Pruebas](/pruebas)
+| | Descripción | Código | Docs |
+|-|:------------|:----:|:----:|
+|GPS_bueno.ino | Código en formato Arduino IDE |[:white_check_mark:](/Pruebas/GPS_bueno.ino)|[:white_check_mark:](/Pruebas/Readme.md)|
+|TTN_ESP32.ino| Código en formato Arduino IDE |[:white_check_mark:](/Pruebas/TTN_ESP32.json)|[:white_check_mark:](/Pruebas/Readme.md)|
+|TTN_ESP32_ABP.ino.ino| Código en formato Arduino IDE |[:white_check_mark:](/Pruebas/TTN_ESP32_ABP.ino.json)|[:white_check_mark:](/Pruebas/Readme.md)|
 
+[[Go to top]](#MOXA)
 
+## Software
+- Arduino IDE 1.8.12 - [Download](https://www.arduino.cc/en/main/software)
+- Node-RED 1.0.6 - [Getting started](https://nodered.org/docs/getting-started/)
 
-
-Archivos compilables en Arduino para comunicación de los nodos de sensores del proyecto con los dashboards, y los archivos json para importar a Node-red con cada uno de ellos.
- 
-Se añade una carpeta con las pruebas de comunicaciones extra realizadas hasta la fecha con archivos compilables en Arduino
+## Contributors
+- [@CristianDIES](https://github.com/CristianDIES)
+- [@santiagoruizs](https://github.com/santiagoruizs)
+- [@JEISONJURADO](https://github.com/JEISONJURADO)
 
 https://github.com/santiagoruizs/MOXA
