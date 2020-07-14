@@ -38,7 +38,9 @@ Se ha estructurado el repositorio por carpetas diferenciadas por conceptos:
 |-|:------------|:----:|:----:|
 |GPS_bueno.ino | Código en formato Arduino IDE |[:white_check_mark:](/Pruebas/GPS_bueno.ino)|[:white_check_mark:](/Pruebas/Readme.md)|
 |TTN_ESP32.ino| Código en formato Arduino IDE |[:white_check_mark:](/Pruebas/TTN_ESP32.json)|[:white_check_mark:](/Pruebas/Readme.md)|
-|TTN_ESP32_ABP.ino.ino| Código en formato Arduino IDE |[:white_check_mark:](/Pruebas/TTN_ESP32_ABP.ino.json)|[:white_check_mark:](/Pruebas/Readme.md)|
+|TTN_ESP32_ABP.ino| Código en formato Arduino IDE |[:white_check_mark:](/Pruebas/TTN_ESP32_ABP.ino)|[:white_check_mark:](/Pruebas/Readme.md)|
+|LoraWanABP.ino| Código en formato Arduino IDE |[:white_check_mark:](/Pruebas/LoraWanABP.ino)|[:white_check_mark:](/Pruebas/Readme.md)|
+|ESP32_MQTT_PruebasEntregaFinal_1.ino| Código en formato Arduino IDE |[:white_check_mark:](/Pruebas/ESP32_MQTT_PruebasEntregaFinal_1.ino)|[:white_check_mark:](/Pruebas/Readme.md)|
 
 [[Go to top]](#MOXA)
 
