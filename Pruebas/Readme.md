@@ -1,4 +1,4 @@
-#Pruebas
+# Pruebas
 
 En esta carpeta se añaden los siguientes archivos de prueba:
 1. TTN_ESP32.ino: conexión LoRa vía OTAA (se descarta este código a favor de la comunicación ABP)
