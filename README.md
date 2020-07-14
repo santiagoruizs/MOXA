@@ -1,7 +1,7 @@
 # MOXA
 Grupo MOXA de IIOT 
 
-Repositorio para trabajo en grupo del proyecto de IIOT
+Repositorio para trabajo en grupo del proyecto CIMILK del posgrado IIOT
 
 Se ha estructurado el repositorio por carpetas diferenciadas por conceptos:
 
