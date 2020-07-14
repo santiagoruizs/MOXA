@@ -31,7 +31,7 @@ Se ha estructurado el repositorio por carpetas diferenciadas por conceptos:
 ## [Nodered](/Node-red)
 | | Descripción | Código | Docs |
 |-|:------------|:----:|:----:|
-|Granjas_Fabrica.json| Dashboard Node-Red en formato json |[:white_check_mark:](/Node-red/Granjas_Fabrica.json)|:negative_squared_cross_mark:|
+|Dashboard_MOXA.json| Dashboard Node-Red en formato json |[:white_check_mark:](/Node-red/Dashboard_MOXA.json)|:negative_squared_cross_mark:|
 
 ## [Pruebas](/Pruebas)
 | | Descripción | Código | Docs |
