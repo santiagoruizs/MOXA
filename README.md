@@ -19,8 +19,8 @@ Se ha estructurado el repositorio por carpetas diferenciadas por conceptos:
 ## [Fábrica](/fabrica)
 | | Descripción | Código | Docs |
 |-|:------------|:----:|:----:|
-|ESP32_Fabrica_MQTT.ino | Código en formato Arduino IDE |[:white_check_mark:](/Fabrica/ESP32_Fabrica_MQTT.ino)|[:white_check_mark:](/Fabrica/readme.txt)|
-|planta.json| Dashboard Node-Red en formato json |[:white_check_mark:](/Fabrica/planta.json)|[:white_check_mark:](/Fabrica/readme.txt)|
+|ESP32_Fabrica_MQTT.ino | Código en formato Arduino IDE |[:white_check_mark:](/Fabrica/ESP32_Fabrica_MQTT.ino)|:negative_squared_cross_mark:|
+|planta.json| Dashboard Node-Red en formato json |[:white_check_mark:](/Fabrica/planta.json)|:negative_squared_cross_mark:|
 
 ## [Granjas](/granjas)
 | | Descripción | Código | Docs |
