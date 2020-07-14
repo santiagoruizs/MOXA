@@ -13,8 +13,8 @@ Se ha estructurado el repositorio por carpetas diferenciadas por conceptos:
 ## [Camiones](/camiones)
 | | Description | Code | Docs |
 |-|:------------|:----:|:----:|
-|MQTT_Camiones.ino | Código en formato Arduino IDE |[:white_check_mark:](/camiones/MQTT_Camiones.ino)|[:white_check_mark:](/camiones/README.md)|
-|camiones.json| Dashboard Node-Red en formato json |[:white_check_mark:](/camiones.json)|[:white_check_mark:](/camiones/README.md)|
+|MQTT_Camiones.ino | Código en formato Arduino IDE |[:white_check_mark:](/Camiones/MQTT_Camiones.ino)|[:white_check_mark:](/Camiones/README.md)|
+|camiones.json| Dashboard Node-Red en formato json |[:white_check_mark:](/Camiones/camiones.json)|[:white_check_mark:](/Camiones/README.md)|
 
 ## [Fabrica](/fabrica)
 
